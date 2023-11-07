@@ -17,11 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Inventories\Controllers\" />
-    <Folder Include="Areas\Inventories\Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\InventoryManager.Core\InventoryManager.Core.csproj" />
   </ItemGroup>
 

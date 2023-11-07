@@ -8,12 +8,13 @@ namespace InventoryManager.API.Areas.Items.Controllers;
 [ApiController]
 [Authorize]
 [Route("[controller]")]
+[ProducesResponseType(StatusCodes.Status400BadRequest)]
+[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+[Produces("application/json")]
 public class ItemsController : ControllerBase
 {
 	[HttpGet]
 	[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ItemResponse>))]
-	[ProducesResponseType(StatusCodes.Status400BadRequest)]
-	[Produces("application/json")]
 	public ActionResult<List<ItemResponse>> Index()
 	{
 		return new List<ItemResponse>

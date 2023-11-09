@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Text;
 using InventoryManager.API.Identity.Models;
+using InventoryManager.Logic.Users.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -16,8 +17,13 @@ namespace InventoryManager.API.Identity.Controllers;
 public class IdentityController : ControllerBase
 {
 	private readonly IConfiguration _configuration;
+	private readonly IUserLogic _userLogic;
 
-	public IdentityController(IConfiguration configuration) => _configuration = configuration;
+	public IdentityController(IConfiguration configuration, IUserLogic userLogic)
+	{
+		_configuration = configuration;
+		_userLogic = userLogic;
+	}
 		
 	[HttpPost("Token")]
 	public IActionResult GenerateToken([FromBody] TokenGenerationRequest request)
@@ -30,7 +36,7 @@ public class IdentityController : ControllerBase
 			new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
 			new(JwtRegisteredClaimNames.Sub, request.Email),
 			new(JwtRegisteredClaimNames.Email, request.Email),
-			new("userid", request.UserId.ToString())
+			new("userid", Guid.NewGuid().ToString())
 		};
 
 		var tokenDescriptor = new SecurityTokenDescriptor

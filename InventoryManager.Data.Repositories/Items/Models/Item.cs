@@ -1,6 +1,6 @@
 ﻿using InventoryManager.Core.Enums.Items;
 
-namespace InventoryManager.Core.Models.Items;
+namespace InventoryManager.Data.Repositories.Items.Models;
 
 public class Item
 {

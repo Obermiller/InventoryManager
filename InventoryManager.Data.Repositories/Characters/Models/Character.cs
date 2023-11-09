@@ -1,4 +1,4 @@
-﻿namespace InventoryManager.Core.Models.Characters;
+﻿namespace InventoryManager.Data.Repositories.Characters.Models;
 
 public class Character
 {

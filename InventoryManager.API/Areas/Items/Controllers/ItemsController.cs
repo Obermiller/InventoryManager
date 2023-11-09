@@ -1,5 +1,6 @@
-﻿using InventoryManager.API.Areas.Items.Models;
-using InventoryManager.Core.Enums.Items;
+﻿using AutoMapper;
+using InventoryManager.API.Areas.Items.Models;
+using InventoryManager.Logic.Items.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,33 +14,22 @@ namespace InventoryManager.API.Areas.Items.Controllers;
 [Produces("application/json")]
 public class ItemsController : ControllerBase
 {
-	[HttpGet]
-	[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ItemResponse>))]
-	public ActionResult<List<ItemResponse>> Index()
+	private readonly IItemLogic _itemLogic;
+	private readonly IMapper _mapper;
+
+	public ItemsController(IItemLogic itemLogic, IMapper mapper)
 	{
-		return new List<ItemResponse>
-		{
-			new()
-			{
-				Id = Guid.NewGuid(),
-				Name = "Test Weapon",
-				Description = "A unique weapon",
-				PowerLevel = 823,
-				RequiredLevel = 67,
-				Rarity = ItemRarity.Unique,
-				Slot = ItemSlot.Weapon,
-				Weight = 5.12
-			},
-			new()
-			{
-				Id = Guid.NewGuid(),
-				Name = "Test Helmet",
-				Description = "A rare helm",
-				PowerLevel = 678,
-				Rarity = ItemRarity.Rare,
-				Slot = ItemSlot.Helm,
-				Weight = 1.45
-			}
-		};
+		_itemLogic = itemLogic;
+		_mapper = mapper;
+	}
+	
+	[HttpGet, Route("[action]/{id:guid}")]
+	[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ItemResponse))]
+	public ActionResult<ItemResponse> GetById(Guid id)
+	{
+		var item = _itemLogic.GetById(id);
+		var response = _mapper.Map<ItemResponse>(item);
+
+		return response;
 	}
 }

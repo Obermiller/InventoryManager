@@ -1,9 +1,30 @@
 using System.Text;
+using InventoryManager.Data.Repositories.Characters;
+using InventoryManager.Data.Repositories.Characters.Contracts;
+using InventoryManager.Data.Repositories.Inventories;
+using InventoryManager.Data.Repositories.Inventories.Contracts;
+using InventoryManager.Data.Repositories.Items;
+using InventoryManager.Data.Repositories.Items.Contracts;
+using InventoryManager.Logic.Characters;
+using InventoryManager.Logic.Characters.Contracts;
+using InventoryManager.Logic.Inventories;
+using InventoryManager.Logic.Inventories.Contracts;
+using InventoryManager.Logic.Items;
+using InventoryManager.Logic.Items.Contracts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
+
+builder.Services.AddSingleton<ICharacterLogic, CharacterLogic>();
+builder.Services.AddSingleton<ICharacterRepository, CharacterRepository>();
+builder.Services.AddSingleton<IInventoryLogic, InventoryLogic>();
+builder.Services.AddSingleton<IInventoryRepository, InventoryRepository>();
+builder.Services.AddSingleton<IItemLogic, ItemLogic>();
+builder.Services.AddSingleton<IItemRepository, ItemRepository>();
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 // Add services to the container.
 builder.Services.AddAuthentication(auth =>

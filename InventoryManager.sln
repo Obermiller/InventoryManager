@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager.API", "Inv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager.Core", "InventoryManager.Core\InventoryManager.Core.csproj", "{A052A50B-6266-491F-859B-9C20AEE800B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager.Data.Repositories", "InventoryManager.Data.Repositories\InventoryManager.Data.Repositories.csproj", "{F5F14C63-D08B-4341-B5DD-FEC4804D6B7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager.Logic", "InventoryManager.Logic\InventoryManager.Logic.csproj", "{B42F562C-4482-49BE-B8E3-1394B1982BD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{A052A50B-6266-491F-859B-9C20AEE800B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A052A50B-6266-491F-859B-9C20AEE800B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A052A50B-6266-491F-859B-9C20AEE800B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5F14C63-D08B-4341-B5DD-FEC4804D6B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5F14C63-D08B-4341-B5DD-FEC4804D6B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5F14C63-D08B-4341-B5DD-FEC4804D6B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5F14C63-D08B-4341-B5DD-FEC4804D6B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B42F562C-4482-49BE-B8E3-1394B1982BD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B42F562C-4482-49BE-B8E3-1394B1982BD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B42F562C-4482-49BE-B8E3-1394B1982BD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B42F562C-4482-49BE-B8E3-1394B1982BD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

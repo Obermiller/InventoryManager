@@ -1,4 +1,4 @@
-﻿using InventoryManager.Core.Models.Items;
+﻿using InventoryManager.Data.Repositories.Items.Models;
 
 namespace InventoryManager.API.Areas.Items.Models;
 

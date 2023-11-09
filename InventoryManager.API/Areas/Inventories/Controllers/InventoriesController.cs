@@ -1,6 +1,6 @@
-﻿using InventoryManager.API.Areas.Inventories.Models;
-using InventoryManager.Core.Enums.Items;
-using InventoryManager.Core.Models.Items;
+﻿using AutoMapper;
+using InventoryManager.API.Areas.Inventories.Models;
+using InventoryManager.Logic.Inventories.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,38 +14,22 @@ namespace InventoryManager.API.Areas.Inventories.Controllers;
 [Produces("application/json")]
 public class InventoriesController : ControllerBase
 {
+	private readonly IInventoryLogic _inventoryLogic;
+	private readonly IMapper _mapper;
+
+	public InventoriesController(IInventoryLogic inventoryLogic, IMapper mapper)
+	{
+		_inventoryLogic = inventoryLogic;
+		_mapper = mapper;
+	}
+	
 	[HttpGet, Route("[action]/{characterId:guid}")]
 	[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(InventoryResponse))]
 	public ActionResult<InventoryResponse> GetForCharacter(Guid characterId)
 	{
-		return new InventoryResponse
-		{
-			CharacterId = characterId,
-			CharacterName = "William Ramos",
-			Items = new List<Item>
-			{
-				new()
-				{
-					Id = Guid.NewGuid(),
-					Name = "Test Weapon",
-					Description = "A unique weapon",
-					PowerLevel = 823,
-					RequiredLevel = 67,
-					Rarity = ItemRarity.Unique,
-					Slot = ItemSlot.Weapon,
-					Weight = 5.12
-				},
-				new()
-				{
-					Id = Guid.NewGuid(),
-					Name = "Test Helmet",
-					Description = "A rare helm",
-					PowerLevel = 678,
-					Rarity = ItemRarity.Rare,
-					Slot = ItemSlot.Helm,
-					Weight = 1.45
-				}
-			}
-		};
+		var inventory = _inventoryLogic.GetByCharacterId(characterId);
+		var response = _mapper.Map<InventoryResponse>(inventory);
+
+		return response;
 	}
 }

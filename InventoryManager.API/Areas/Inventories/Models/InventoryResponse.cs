@@ -1,8 +1,8 @@
-﻿using InventoryManager.Core.Models.Inventories;
+﻿using InventoryManager.Data.Repositories.Inventories.Models;
 
 namespace InventoryManager.API.Areas.Inventories.Models;
 
 public class InventoryResponse : Inventory
 {
-	public string CharacterName { get; set; } = string.Empty;
+	
 }

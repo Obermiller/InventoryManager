@@ -1,4 +1,5 @@
-﻿using InventoryManager.Core.Enums.Items;
+﻿using InventoryManager.Core.Enums.Inventories;
+using InventoryManager.Core.Enums.Items;
 using InventoryManager.Data.Repositories.Inventories.Contracts;
 using InventoryManager.Data.Repositories.Inventories.Models;
 using InventoryManager.Data.Repositories.Items.Models;
@@ -11,12 +12,15 @@ public class InventoryRepository : IInventoryRepository
 	{
 		return new Inventory
 		{
+			Id = new Guid(),
 			CharacterId = characterId,
+			Type = InventoryType.Items,
 			Items = new List<Item>
 			{
 				new()
 				{
 					Id = Guid.NewGuid(),
+					InventoryId = Guid.NewGuid(),
 					Name = "Test Weapon",
 					Description = "A unique weapon",
 					PowerLevel = 823,
@@ -28,6 +32,7 @@ public class InventoryRepository : IInventoryRepository
 				new()
 				{
 					Id = Guid.NewGuid(),
+					InventoryId = null,
 					Name = "Test Helmet",
 					Description = "A rare helm",
 					PowerLevel = 678,

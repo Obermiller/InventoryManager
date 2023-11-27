@@ -8,7 +8,8 @@ namespace InventoryManager.API.Areas.Inventories.Controllers;
 
 [ApiController]
 [Authorize]
-[Route("[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion("1.0")]
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 [ProducesResponseType(StatusCodes.Status401Unauthorized)]
 [Produces("application/json")]

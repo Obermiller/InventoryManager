@@ -13,3 +13,6 @@ bld/
 [Oo]bj/
 
 *.user
+
+*.jfm
+*.dbmdl

@@ -11,6 +11,8 @@ namespace InventoryManager.API.Identity.Controllers;
 
 [ApiController]
 [AllowAnonymous]
+[Route("api/v{version:apiVersion}")]
+[ApiVersion("1.0")]
 [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 [Produces("application/json")]
@@ -31,12 +33,17 @@ public class IdentityController : ControllerBase
 		var tokenHandler = new JwtSecurityTokenHandler();
 		var key = Encoding.UTF8.GetBytes(_configuration["JwtSettings:Key"]!);
 
+		if (_userLogic.GetByEmail(request.Email) is not { } user)
+		{
+			return BadRequest($"User with email {request.Email} not found.");
+		}
+		
 		var claims = new List<Claim>
 		{
 			new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-			new(JwtRegisteredClaimNames.Sub, request.Email),
-			new(JwtRegisteredClaimNames.Email, request.Email),
-			new("userid", Guid.NewGuid().ToString())
+			new(JwtRegisteredClaimNames.Sub, user.Email),
+			new(JwtRegisteredClaimNames.Email, user.Email),
+			new("userid", user.Id.ToString())
 		};
 
 		var tokenDescriptor = new SecurityTokenDescriptor

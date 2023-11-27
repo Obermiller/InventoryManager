@@ -4,5 +4,7 @@ namespace InventoryManager.Logic.Characters.Contracts;
 
 public interface ICharacterLogic
 {
-	Character GetById(Guid id);
+	void Delete(Guid id);
+	Character? GetById(Guid id);
+	Guid Save(Character character);
 }

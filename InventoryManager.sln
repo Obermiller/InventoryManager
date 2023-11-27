@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager.API", "InventoryManager.API\InventoryManager.API.csproj", "{050CCE87-0732-4C9D-A775-7A0BD5FA70CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManager.API", "InventoryManager.API\InventoryManager.API.csproj", "{050CCE87-0732-4C9D-A775-7A0BD5FA70CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager.Core", "InventoryManager.Core\InventoryManager.Core.csproj", "{A052A50B-6266-491F-859B-9C20AEE800B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManager.Core", "InventoryManager.Core\InventoryManager.Core.csproj", "{A052A50B-6266-491F-859B-9C20AEE800B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager.Data.Repositories", "InventoryManager.Data.Repositories\InventoryManager.Data.Repositories.csproj", "{F5F14C63-D08B-4341-B5DD-FEC4804D6B7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManager.Data.Repositories", "InventoryManager.Data.Repositories\InventoryManager.Data.Repositories.csproj", "{F5F14C63-D08B-4341-B5DD-FEC4804D6B7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager.Logic", "InventoryManager.Logic\InventoryManager.Logic.csproj", "{B42F562C-4482-49BE-B8E3-1394B1982BD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManager.Logic", "InventoryManager.Logic\InventoryManager.Logic.csproj", "{B42F562C-4482-49BE-B8E3-1394B1982BD6}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "InventoryManager.Database", "InventoryManager.Database\InventoryManager.Database.sqlproj", "{DBBCC5DA-CED0-47F2-8448-7B73EA748531}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,12 @@ Global
 		{B42F562C-4482-49BE-B8E3-1394B1982BD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B42F562C-4482-49BE-B8E3-1394B1982BD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B42F562C-4482-49BE-B8E3-1394B1982BD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBBCC5DA-CED0-47F2-8448-7B73EA748531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBBCC5DA-CED0-47F2-8448-7B73EA748531}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBBCC5DA-CED0-47F2-8448-7B73EA748531}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DBBCC5DA-CED0-47F2-8448-7B73EA748531}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBBCC5DA-CED0-47F2-8448-7B73EA748531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBBCC5DA-CED0-47F2-8448-7B73EA748531}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

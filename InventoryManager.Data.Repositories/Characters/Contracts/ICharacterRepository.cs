@@ -4,5 +4,7 @@ namespace InventoryManager.Data.Repositories.Characters.Contracts;
 
 public interface ICharacterRepository
 {
-	Character GetById(Guid id);
+	void Delete(Guid id);
+	Character? GetById(Guid id);
+	Guid Save(Character character);
 }

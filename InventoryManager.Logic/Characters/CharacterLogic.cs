@@ -13,5 +13,9 @@ public class CharacterLogic : ICharacterLogic
 		_characterRepo = characterRepo;
 	}
 
-	public Character GetById(Guid id) => _characterRepo.GetById(id);
+	public void Delete(Guid id) => _characterRepo.Delete(id);
+	
+	public Character? GetById(Guid id) => _characterRepo.GetById(id);
+
+	public Guid Save(Character character) => _characterRepo.Save(character);
 }

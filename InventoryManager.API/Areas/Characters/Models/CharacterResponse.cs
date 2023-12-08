@@ -1,4 +1,4 @@
-﻿using InventoryManager.Data.Repositories.Characters.Models;
+﻿using InventoryManager.Core.Models.Characters;
 
 namespace InventoryManager.API.Areas.Characters.Models;
 

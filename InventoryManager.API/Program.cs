@@ -1,6 +1,7 @@
 using System.Text;
 using InventoryManager.Data.Repositories.Characters;
 using InventoryManager.Data.Repositories.Characters.Contracts;
+using InventoryManager.Data.Repositories.Characters.Mappers;
 using InventoryManager.Data.Repositories.Inventories;
 using InventoryManager.Data.Repositories.Inventories.Contracts;
 using InventoryManager.Data.Repositories.Items;
@@ -88,6 +89,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+DapperExtensions.DapperExtensions.SetMappingAssemblies(
+    new[] { typeof(CharacterMapper).Assembly }
+);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -95,6 +100,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();

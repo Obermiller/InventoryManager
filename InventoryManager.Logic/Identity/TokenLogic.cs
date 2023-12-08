@@ -7,7 +7,7 @@ public class TokenLogic : ITokenLogic
 {
 	public Guid? GetUserId(string? header)
 	{
-		if (header is not null)
+		if (header is not null && header.StartsWith("Bearer "))
 		{
 			var token = ParseToken(header);
 			var claim = token.Claims.First(claim => claim.Type == "userid");
@@ -24,7 +24,7 @@ public class TokenLogic : ITokenLogic
 	private JwtSecurityToken ParseToken(string header)
 	{
 		var tokenHandler = new JwtSecurityTokenHandler();
-		var tokenString = header.Replace("Bearer ", string.Empty);
+		var tokenString = header["Bearer ".Length..];
 		var token = tokenHandler.ReadJwtToken(tokenString);
 
 		return token;

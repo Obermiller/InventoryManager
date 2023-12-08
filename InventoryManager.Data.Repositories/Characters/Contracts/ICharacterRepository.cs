@@ -4,7 +4,10 @@ namespace InventoryManager.Data.Repositories.Characters.Contracts;
 
 public interface ICharacterRepository
 {
-	void Delete(Guid id);
-	Character? GetById(Guid id);
-	Guid Save(Character character);
+	Task<bool> DeleteAsync(Character character);
+	Task<List<Character>> GetAllAsync(Guid userId);
+	Task<Character?> GetByIdAsync(Guid id);
+	Task<Guid> InsertAsync(Character character);
+	Task<List<Guid>> InsertAsync(List<Character> characters);
+	Task<bool> UpdateAsync(Character character);
 }

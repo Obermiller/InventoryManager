@@ -10,34 +10,70 @@ public class CharacterRepository : SqlConnection, ICharacterRepository
 	public CharacterRepository(IConfiguration config)
 		: base(config) { }
 
-	public void Delete(Guid id)
+	public async Task<bool> DeleteAsync(Character character)
 	{
 		using var conn = CreateConnection();
-		conn.Delete<Character>(new { Id = id });
+		var result = await conn.DeleteAsync(character);
+
+		return result;
+	}
+
+	public async Task<List<Character>> GetAllAsync(Guid userId)
+	{
+		using var conn = CreateConnection();
+        var characters = await conn.GetListAsync<Character>(new { UserId = userId });
+        
+        return characters.ToList();
 	}
 	
-	public Character? GetById(Guid id)
+	public async Task<Character?> GetByIdAsync(Guid id)
 	{
 		using var conn = CreateConnection();
-		
-		var user = conn.Get<Character>(new { Id = id });
+		var user = await conn.GetAsync<Character>(new { Id = id });
 		
 		return user;
 	}
 
-	public Guid Save(Character character)
+	public async Task<Guid> InsertAsync(Character character)
 	{
 		using var conn = CreateConnection();
+		var id = await conn.InsertAsync(character);
 
-		if (character.Id != Guid.Empty)
+		return id;
+	}
+
+	public async Task<List<Guid>> InsertAsync(List<Character> characters)
+	{
+		var ids = new List<Guid>();
+		
+		using var conn = CreateConnection();
+		using var tran = conn.BeginTransaction();
+		
+		try
 		{
-			conn.Update(character);
+			foreach (var character in characters)
+			{
+				var id = await conn.InsertAsync(character, tran);
+				
+				ids.Add(id);
+			}
+			
+			tran.Commit();
 		}
-		else
+		catch (Exception)
 		{
-			conn.Insert(character);
+			tran.Rollback();
+			throw;
 		}
 
-		return character.Id;
+		return ids;
+	}
+
+	public async Task<bool> UpdateAsync(Character character)
+	{
+		using var conn = CreateConnection();
+		var result = await conn.UpdateAsync(character);
+
+		return result;
 	}
 }

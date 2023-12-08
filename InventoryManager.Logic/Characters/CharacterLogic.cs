@@ -53,8 +53,8 @@ public class CharacterLogic : ICharacterLogic
 	private static void ValidateCharacter(Character? character, Guid userId)
 	{
 		if (character is not null && character.UserId != userId)
-        {
-            throw new InvalidOperationException("Character does not belong to the user.");
-        }
+		{
+			throw new InvalidOperationException("Character does not belong to the user.");
+		}
 	}
 }

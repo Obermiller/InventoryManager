@@ -129,7 +129,7 @@ public class CharactersController : UtilitiesController
 		
 		var characters = await _characterLogic.GetAllAsync(userId);
 		var response = _mapper.Map<List<CharacterResponse>>(characters);
-    
+
 		return Ok(response);
 	}
 

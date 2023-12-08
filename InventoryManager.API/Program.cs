@@ -48,39 +48,39 @@ builder.Services.AddAutoMapper(typeof(Program));
 // Add versioning to the API.
 builder.Services.AddApiVersioning(options =>
 {
-    options.AssumeDefaultVersionWhenUnspecified = true;
-    options.DefaultApiVersion = new ApiVersion(1, 0);
-    options.ReportApiVersions = true;
-    options.ApiVersionReader = ApiVersionReader.Combine(
-        new QueryStringApiVersionReader("api-version"),
-        new HeaderApiVersionReader("X-Version"),
-        new MediaTypeApiVersionReader("ver"));
+	options.AssumeDefaultVersionWhenUnspecified = true;
+	options.DefaultApiVersion = new ApiVersion(1, 0);
+	options.ReportApiVersions = true;
+	options.ApiVersionReader = ApiVersionReader.Combine(
+		new QueryStringApiVersionReader("api-version"),
+		new HeaderApiVersionReader("X-Version"),
+		new MediaTypeApiVersionReader("ver"));
 });
 
 builder.Services.AddVersionedApiExplorer(options =>
 {
-    options.GroupNameFormat = "'v'VVV";
-    options.SubstituteApiVersionInUrl = true;
+	options.GroupNameFormat = "'v'VVV";
+	options.SubstituteApiVersionInUrl = true;
 });
 
 // Add services to the container.
 builder.Services.AddAuthentication(auth =>
 {
-    auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    auth.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+	auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+	auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+	auth.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(bearer =>
 {
-    bearer.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidIssuer = config["JwtSettings:Issuer"],
-        ValidAudience = config["JwtSettings:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtSettings:Key"]!)),
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true
-    };
+	bearer.TokenValidationParameters = new TokenValidationParameters
+	{
+		ValidIssuer = config["JwtSettings:Issuer"],
+		ValidAudience = config["JwtSettings:Audience"],
+		IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtSettings:Key"]!)),
+		ValidateIssuer = true,
+		ValidateAudience = true,
+		ValidateLifetime = true,
+		ValidateIssuerSigningKey = true
+	};
 });
 
 builder.Services.AddAuthorization();
@@ -90,7 +90,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 DapperExtensions.DapperExtensions.SetMappingAssemblies(
-    new[] { typeof(CharacterMapper).Assembly }
+	new[] { typeof(CharacterMapper).Assembly }
 );
 
 var app = builder.Build();
@@ -98,14 +98,14 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-    app.UseDeveloperExceptionPage();
+	app.UseSwagger();
+	app.UseSwaggerUI();
+	app.UseDeveloperExceptionPage();
 }
 else
 {
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
+	app.UseExceptionHandler("/Error");
+	app.UseHsts();
 }
 
 app.UseHttpsRedirection();

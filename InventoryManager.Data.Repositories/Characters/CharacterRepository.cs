@@ -21,9 +21,9 @@ public class CharacterRepository : SqlConnection, ICharacterRepository
 	public async Task<List<Character>> GetAllAsync(Guid userId)
 	{
 		using var conn = CreateConnection();
-        var characters = await conn.GetListAsync<Character>(new { UserId = userId });
-        
-        return characters.ToList();
+		var characters = await conn.GetListAsync<Character>(new { UserId = userId });
+
+		return characters.ToList();
 	}
 	
 	public async Task<Character?> GetByIdAsync(Guid id)

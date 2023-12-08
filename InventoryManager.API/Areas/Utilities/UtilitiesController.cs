@@ -21,7 +21,7 @@ public class UtilitiesController : ControllerBase
 
 	//Token
 	protected Guid? GetUserId()
-    {
-        return _tokenLogic.GetUserId(Request.Headers[IdentityConstants.Authorization]);
-    }
+	{
+		return _tokenLogic.GetUserId(Request.Headers[IdentityConstants.Authorization]);
+	}
 }
